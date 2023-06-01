@@ -1,0 +1,49 @@
+erDiagram
+
+  "Pool" {
+    String id "🗝️"
+    String title 
+    String code 
+    DateTime createdAt 
+    }
+  
+
+  "Participant" {
+    String id "🗝️"
+    }
+  
+
+  "User" {
+    String id "🗝️"
+    String name 
+    String email 
+    String avatarUrl "❓"
+    DateTime createdAt 
+    }
+  
+
+  "Game" {
+    String id "🗝️"
+    DateTime date 
+    String firstTeamCountryCode 
+    String secondTeamCountryCode 
+    }
+  
+
+  "Guess" {
+    String id "🗝️"
+    Int firstTeamPoints 
+    Int secondTeamPoints 
+    DateTime createdAt 
+    }
+  
+    "Pool" o{--}o "Participant" : "participants"
+    "Pool" o|--|o "User" : "owner"
+    "Participant" o{--}o "Guess" : "guesses"
+    "Participant" o|--|| "User" : "user"
+    "Participant" o|--|| "Pool" : "pool"
+    "User" o{--}o "Participant" : "participatingAt"
+    "User" o{--}o "Pool" : "ownPools"
+    "Game" o{--}o "Guess" : "guesses"
+    "Guess" o|--|| "Game" : "game"
+    "Guess" o|--|| "Participant" : "participant"
